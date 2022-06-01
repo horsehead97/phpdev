@@ -18,8 +18,9 @@ class TradeHistController extends BaseController
                 if (isset($arrQueryStringParams['limit']) && $arrQueryStringParams['limit']) {
                     $intLimit = $arrQueryStringParams['limit'];
                 }
- 
+                echo "here, present";
                 $arrUsers = $tradehistModel->getTrades($intLimit);
+                echo $arrUsers . '\n';
                 $responseData = json_encode($arrUsers);
             } catch (Error $e) {
                 $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';

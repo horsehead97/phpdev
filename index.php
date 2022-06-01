@@ -12,8 +12,9 @@ if ((isset($uri[2]) && $uri[2] != 'trade') || !isset($uri[3])) {
  
 require PROJECT_ROOT_PATH . "/Controller/Api/TradeHistController.php";
  
-$objFeedController = new TradeHIstController();
+$objFeedController = new TradeHistController();
 $strMethodName = $uri[3] . 'Action';
+echo $strMethodName . '\n';
 $objFeedController->{$strMethodName}();
 
 ?>

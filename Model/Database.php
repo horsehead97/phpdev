@@ -20,6 +20,7 @@ class Database
     {
         try {
             $stmt = $this->executeStatement( $query , $params );
+            
             $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);               
             $stmt->close();
  
@@ -47,7 +48,7 @@ class Database
  
             return $stmt;
         } catch(Exception $e) {
-            throw New Exception( $e->getMessage() );
+            throw New Exception( 'you suck dicks' . $e->getMessage() );
         }   
     }
 }
