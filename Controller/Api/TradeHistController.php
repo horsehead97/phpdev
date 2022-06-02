@@ -26,7 +26,22 @@ class TradeHistController extends BaseController
                 $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
-        } else {
+        }elseif (strtoupper($requestMethod) == 'POST') {
+            try {
+                $tradehistModel = new TradeHistModel();
+                $upc='';
+                if (isset($arrQueryStringParams['upc']) && $arrQueryStringParams['upc']) {
+                    $upc= $arrQueryStringParams['upc'];
+                }
+                echo "here, present";
+                $arrUsers = $tradehistModel->getTrades($intLimit);
+                echo $arrUsers . '\n';
+                $responseData = json_encode($arrUsers);
+            } catch (Error $e) {
+                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
+            }
+        }else{
             $strErrorDesc = 'Method not supported';
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }

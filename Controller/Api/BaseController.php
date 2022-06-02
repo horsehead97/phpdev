@@ -16,7 +16,7 @@ class BaseController
      */
     protected function getUriSegments()
     {
-        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+	$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $uri = explode( '/', $uri );
  
         return $uri;
@@ -27,8 +27,13 @@ class BaseController
      * 
      * @return array
      */
+    protected function getReqBody()
+    {
+        return json_decode(file_get_contents('php://input'),true);
+    }
     protected function getQueryStringParams()
     {
+	
         return parse_str($_SERVER['QUERY_STRING'], $query);
     }
  
