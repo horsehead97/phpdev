@@ -61,17 +61,7 @@ class GetProductsController extends BaseController
                     throw new Error('upc value is invalid, please refer to API documentation');
                 } 
                 $prod_data = $gpModel->getProduct($upc);
-                //$prod_data=$prod_data[0];
-                // ServerLogger::log("prod data: $prod_date  afterwards");
-                // foreach($prod_data as $x => $x_value) {
-                //     ServerLogger::log("Key=" . $x . ", Value=" . $x_value);
-                // }
-                //ServerLogger::log(var_dump($prod_data));
-                //$responseData = $prod_data[0];
-                //$responseData=implode('',$prod_data);
-                //$type=gettype($responseData);
-                //ServerLogger::log("responsedata: $responseData type: $type");
-                $responseData = json_encode($prod_data);
+                $responseData = json_encode($prod_data[0]);
                 ServerLogger::log("response data: var_dump($responseData)");
             } catch (Error $e) {
                 $strErrorDesc = $e->getMessage();
